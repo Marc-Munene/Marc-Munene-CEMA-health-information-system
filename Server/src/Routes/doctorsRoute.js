@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  addDoctor,
+  // addDoctor,
   deleteDoctor,
   editDoctor,
   getDoctors,
@@ -12,7 +12,7 @@ const doctorRouter = Router();
 doctorRouter
   .route("/doctors")
   .get(getDoctors)
-  .post(addDoctor)
+  // .post(addDoctor) //this route is used to add a doctor to the database
   .put(editDoctor)
   .delete(deleteDoctor);
 

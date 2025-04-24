@@ -49,33 +49,8 @@ export const getOneDoctor = async (req, res) => {
 };
 
 //adding a doctor
-export const addDoctor = async (req, res) => {
-  try {
-    const { firstName, lastName, email, phoneNumber, password } = req.body;
 
-    const doctorData = {
-      firstName,
-      lastName,
-      email,
-      phoneNumber,
-      password,
-    };
-
-    const newDoctor = await Doctor.create(doctorData);
-
-    res.status(201).json({
-      success: true,
-      message: "Doctor added successfully",
-      data: newDoctor,
-    });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({
-      success: false,
-      message: "Cannot add doctor",
-    });
-  }
-};
+ //this function is used to add a doctor to the database
 
 //edit a doctos
 export const editDoctor = async (req, res) => {

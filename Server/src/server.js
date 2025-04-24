@@ -9,6 +9,7 @@ import { clientsRouter } from "./Routes/clientsRoute.js";
 
 //connecting to database
 import { connectDB } from "./database/config.js";
+import { authRouter } from "./Routes/authRoute.js";
 
 const app = express();
 
@@ -20,7 +21,7 @@ connectDB();
 // Home route
 app.get("/", getHome);
 
-app.use("/api", doctorRouter, programRouter, clientsRouter);
+app.use("/api", authRouter,doctorRouter, programRouter, clientsRouter);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
