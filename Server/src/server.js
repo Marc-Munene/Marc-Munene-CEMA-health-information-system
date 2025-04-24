@@ -1,65 +1,66 @@
 import express from "express";
+import { getHome } from "./controllers/home.js";
+import {
+  addDoctor,
+  deleteDoctor,
+  editDoctor,
+  getDoctors,
+  getOneDoctor,
+} from "./controllers/doctors.js";
+import {
+  addingClients,
+  deleteClient,
+  editClient,
+  getClients,
+  getOneClient,
+} from "./controllers/clients.js";
+import {
+  addingPrograms,
+  deleteProgram,
+  editProgram,
+  getOneProgram,
+  getPrograms,
+} from "./controllers/programs.js";
 
 const app = express();
 
 const PORT = process.env.PORT || 8080;
 
 // Home route
-app.get("/", (req, res) => {
-  res.send("Home Route");
-});
+app.get("/", getHome);
 
 // Doctors route
-app.get("/doc", (req, res) => {
-  res.send("Getting Doctors");
-});
+app.get("/doctors", getDoctors);
 
-app.post("/doc", (req, res) => {
-  res.send("Adding Doctors");
-});
+app.get("/doctors", getOneDoctor);
 
-app.put("/doc", (req, res) => {
-  res.send("Updating Doctors");
-});
+app.post("/doctors", addDoctor);
 
-app.delete("/doc", (req, res) => {
-  res.send("Deleting Doctors");
-});
+app.put("/doctors", editDoctor);
+
+app.delete("/doctors", deleteDoctor);
 
 //Clients route
-app.get("/client", (req, res) => {
-  res.send("Getting Clients");
-});
+app.get("/client", getClients);
 
-app.post("/client", (req, res) => {
-  res.send("Adding Clients");
-});
+app.get("/client", getOneClient);
 
-app.put("/client", (req, res) => {
-  res.send("Updating Clients");
-});
+app.post("/client", addingClients);
 
-app.delete("/client", (req, res) => {
-  res.send("Deleting Clients");
-});
+app.put("/client", editClient);
+
+app.delete("/client", deleteClient);
 
 //Programs route
-app.get("/program", (req, res) => {
-  res.send("Getting Programs");
-});
+app.get("/programs", getPrograms);
 
-app.post("/program", (req, res) => {
-  res.send("Adding Programs");
-});
+app.get("/programs", getOneProgram);
 
-app.put("/programs", (req, res) => {
-  res.send("Updating Programs");
-});
+app.post("/programs", addingPrograms);
 
-app.delete("/program", (req, res) => {
-  res.send("Deleting Programs");
-});
+app.put("/programs", editProgram);
 
+app.delete("/programs", deleteProgram);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
