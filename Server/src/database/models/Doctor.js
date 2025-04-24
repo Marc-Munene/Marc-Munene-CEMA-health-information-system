@@ -13,6 +13,6 @@ const doctorSchema = new Schema(
   }
 );
 
-const Doctor = new model("Doctor", doctorSchema);
+export const Doctor = new model("Doctor", doctorSchema);
 
-export { Doctor };
+
