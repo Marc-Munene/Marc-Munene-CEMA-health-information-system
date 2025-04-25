@@ -7,6 +7,7 @@ import { GlobalLayout } from "./pages/protected/GlobalLayout";
 import { Client } from "./pages/protected/Client";
 import { Programs } from "./pages/protected/Programs";
 import { Enrollment } from "./pages/protected/Enrollment";
+import { Home } from "./pages/protected/Home";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -14,6 +15,7 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route element={<GlobalLayout />}>
           <Route path="/" element={<App />} />
+          <Route index element={<Home />} />
           <Route path="clients" element={<Client />} />
           <Route path="programs" element={<Programs />} />
           <Route path="enrollment" element={<Enrollment />} />
