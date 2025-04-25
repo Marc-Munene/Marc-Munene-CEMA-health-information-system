@@ -3,7 +3,7 @@ import { Client } from "../database/models/Client.js";
 //getting all clients
 export const getClients = async (req, res) => {
   try {
-    const clients = await Client.find();
+    const clients = await Client.find()
 
     res.status(200).json({
       success: true,
@@ -24,7 +24,7 @@ export const getOneClient = async (req, res) => {
   try {
     const clientId = req.params.id;
 
-    const client = await Client.findById(clientId);
+    const client = await Client.findById(clientId)
 
     if (!client) {
       return res.status(404).json({

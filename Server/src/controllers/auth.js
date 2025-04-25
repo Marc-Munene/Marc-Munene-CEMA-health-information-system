@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 //Doctors signUp
 
 import { compare, hash } from "bcrypt";
@@ -40,10 +42,39 @@ export const login = async (req, res) => {
       throw new Error("Doctor not found");
     }
 
+    // if the username exists, we now try and match the passwords
     const passwordMatch = await compare(password, doctor.password);
     if (!passwordMatch) {
       throw new Error("Invalid password");
     }
+
+    // the password is correct, now we generate  JWT token for the user
+    const { _id } = doctor;
+    const jwtinfo = {
+      _id,
+    };
+
+    // sign the jwt using the secret key
+    const token = jwt.sign(jwtinfo, process.env.JWT_SECRET, {
+      expiresIn: 24 * 60 * 60,
+    });
+
+    // add the token in the cookie
+    res.cookie(process.env.AUTH_COOKIE_NAME, token, {
+      maxAge: 24 * 60 * 60 * 1000,
+      //   can only be accessed by server requests
+
+      httpOnly: true,
+      // path = where the cookie is valid
+      path: "/",
+      // domain = what domain the cookie is valid on
+      // domain: "localhost",
+      // secure = only send cookie over https
+      secure: process.env.NODE_ENV === "production",
+      // sameSite = only send cookie if the request is coming from the same origin
+      sameSite: "lax", // "strict" | "lax" | "none" (secure must be true)
+      // maxAge = how long the cookie is valid for in milliseconds
+    });
 
     res.status(200).json({
       success: true,

@@ -8,7 +8,6 @@ const clientSchema = new Schema(
     gender: { type: String, required: true, enum: ["Male", "Female"] },
     phoneNumber: { type: String, required: true },
     email: { type: String, unique: true },
-    programs: [{ type: String, required: true }],
   },
 
   {

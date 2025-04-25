@@ -9,8 +9,12 @@ import { programRouter } from "./Routes/programsRoute.js";
 import { clientsRouter } from "./Routes/clientsRoute.js";
 import { authRouter } from "./Routes/authRoute.js";
 
-
 import { connectDB } from "./database/config.js";
+import { enrollmentRouter } from "./Routes/enrollmentRoute.js";
+import { doctorAuthentication } from "./middleware/AuthMiddleware.js";
+
+//cookie parser
+import cookieParser from "cookie-parser";
 
 const app = express();
 
@@ -19,13 +23,24 @@ const PORT = process.env.PORT || 8080;
 //middleware
 app.use(express.json());
 
+//cookie parser
+app.use(cookieParser());
+
 //connecting to database
 connectDB();
 
 // Home route
 app.get("/", getHome);
 
-app.use("/api", authRouter, doctorRouter, programRouter, clientsRouter);
+app.use(
+  "/api",
+  authRouter,
+  doctorRouter,
+  doctorAuthentication,
+  programRouter,
+  clientsRouter,
+  enrollmentRouter
+);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
