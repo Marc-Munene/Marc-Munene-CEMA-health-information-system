@@ -9,6 +9,8 @@ const programSchema = new Schema(
       enum: ["Active", "Inactive"],
       default: "Active",
     },
+    descripition: { type: String, required: true },
+    startDate: { type: Date, required: true },
     createdBy: { type: String, required: true },
     doctorId: { type: String, required: true },
   },

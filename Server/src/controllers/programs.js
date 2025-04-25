@@ -2,7 +2,7 @@ import { Program } from "../database/models/Program.js";
 //get all programs
 export const getPrograms = async (req, res) => {
   try {
-    const programs = await Program.find().populate("clients");
+    const programs = await Program.find();
 
     res.status(200).json({
       success: true,
