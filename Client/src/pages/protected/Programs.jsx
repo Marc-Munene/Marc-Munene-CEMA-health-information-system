@@ -1,5 +1,12 @@
+import { useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
+import { useProgramStore } from "../../store/ProgramStore";
 const Programs = () => {
+  const { programData, programs } = useProgramStore();
+
+  useEffect(() => {
+    programData();
+  }, []);
   return (
     <>
       <Navbar />
@@ -32,20 +39,21 @@ const Programs = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* hardcoded body */}
-                <tr className="border-b border-gray-300">
-                  <td className="py-3 text-center">HIV</td>
-                  <td className="py-3 text-center">ACTIVE</td>
-                  <td className="py-3 text-center">2020-04-05</td>
-                  <td className="py-3 text-center">DR. Munene</td>
-                  <td className="py-3 text-center">
-                    <div className="flex justify-center">
-                      <button className="border-transparent py-1 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02] ">
-                        OPEN
-                      </button>
-                    </div>
-                  </td>
-                </tr>
+                {programs.map((elements, i) => (
+                  <tr className="border-b border-gray-300" key={i}>
+                    <td className="py-3 text-center">{elements.programName}</td>
+                    <td className="py-3 text-center">{elements.status}</td>
+                    <td className="py-3 text-center">{elements.startDate}</td>
+                    <td className="py-3 text-center">{elements.createdBy}</td>
+                    <td className="py-3 text-center">
+                      <div className="flex justify-center">
+                        <button className="border-transparent py-1 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02] ">
+                          OPEN
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
