@@ -1,10 +1,13 @@
-import { Sidebar } from "./components/Sidebar";
+import { Navbar } from "./components/Navbar";
 
 const App = () => {
-  return <div className="min-h-screen ">
-    <Sidebar />
-
-  </div>;
+  return (
+    <div className="">
+      <div className="flex flex-col md:flex-row text-primary mt-5 md:mt-0">
+        <Navbar />
+      </div>
+    </div>
+  );
 };
 
 export { App };

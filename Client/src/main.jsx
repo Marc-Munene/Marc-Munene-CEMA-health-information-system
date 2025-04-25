@@ -14,9 +14,9 @@ createRoot(document.getElementById("root")).render(
       <Routes>
         <Route element={<GlobalLayout />}>
           <Route path="/" element={<App />} />
-          <Route index element={<Client />} />
-          <Route path="/programs" element={<Programs />} />
-          <Route path="/enrollments" element={<Enrollment />} />
+          <Route path="clients" element={<Client />} />
+          <Route path="programs" element={<Programs />} />
+          <Route path="enrollment" element={<Enrollment />} />
         </Route>
       </Routes>
     </BrowserRouter>
