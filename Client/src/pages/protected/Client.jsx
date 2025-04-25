@@ -1,6 +1,13 @@
+import { useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
+import { useClientStore } from "../../store/ClientStore";
 
 const Client = () => {
+  const { clientData, clients } = useClientStore();
+
+  useEffect(() => {
+    clientData();
+  }, []);
   return (
     <>
       <Navbar />
@@ -42,21 +49,22 @@ const Client = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* hardcoded body */}
-                <tr className="border-b border-gray-300">
-                  <td className="py-3 text-center">CAROLYNE</td>
-                  <td className="py-3 text-center">NGUGI</td>
-                  <td className="py-3 text-center">0745851127</td>
-                  <td className="py-3 text-center">2001-01-1-21</td>
-                  <td className="py-3 text-center">FEMALE</td>
-                  <td className="py-3 text-center">
-                    <div className="flex justify-center">
-                      <button className="border-transparent py-1 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02] ">
-                        ENROLL
-                      </button>
-                    </div>
-                  </td>
-                </tr>
+                {clients.map((elements, i) => (
+                  <tr className="border-b border-gray-300" key={i}>
+                    <td className="py-3 text-center">{elements.firstName}</td>
+                    <td className="py-3 text-center">{elements.lastName}</td>
+                    <td className="py-3 text-center">{elements.phoneNumber}</td>
+                    <td className="py-3 text-center">{elements.DOB}</td>
+                    <td className="py-3 text-center">{elements.gender}</td>
+                    <td className="py-3 text-center">
+                      <div className="flex justify-center">
+                        <button className="border-transparent py-1 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02] ">
+                          ENROLL
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
