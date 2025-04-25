@@ -6,7 +6,7 @@ const Programs = () => {
       <div className="max-w-6xl mx-auto py-3 rounded-lg px-4 sm:px-6 lg:px-8">
         <div>
           <div>
-            <button className="ml-3 border-transparent py-2 px-3 shadow-xl rounded-md cursor-pointer bg-gray-200 hover:bg-gray-700 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02] mb-5">
+            <button className="ml-3 border-transparent py-2 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02]">
               CREATE NEW PROGRAM
             </button>
           </div>
