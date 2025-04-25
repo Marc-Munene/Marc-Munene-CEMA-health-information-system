@@ -3,7 +3,12 @@ import { Schema, model } from "mongoose";
 const programSchema = new Schema(
   {
     programName: { type: String, required: true },
-    status: { type: String, required: true, enum: ["Active", "Inactive"] },
+    status: {
+      type: String,
+      required: true,
+      enum: ["Active", "Inactive"],
+      default: "Active",
+    },
     createdBy: { type: String, required: true },
     doctorId: { type: String, required: true },
   },

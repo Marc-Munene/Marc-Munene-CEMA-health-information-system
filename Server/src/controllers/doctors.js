@@ -50,7 +50,7 @@ export const getOneDoctor = async (req, res) => {
 
 //adding a doctor
 
- //this function is used to add a doctor to the database
+//this function is used to add a doctor to the database
 
 //edit a doctos
 export const editDoctor = async (req, res) => {
@@ -80,18 +80,12 @@ export const deleteDoctor = async (req, res) => {
   try {
     const doctorId = req.query.id;
 
-    const doctor = await Doctor.deleteOne({ _id: doctorId });
-
-    if (doctor.deletedCount === 0) {
-      return res.status(404).json({
-        success: false,
-        message: "Doctor not found",
-      });
-    }
+    const deletedDoctor = await Doctor.deleteOne({ _id: doctorId });
 
     res.status(200).json({
       success: true,
       message: "Doctor deleted successfully",
+      deletedCount: deletedDoctor.deletedCount,
     });
   } catch (error) {
     console.error(error);

@@ -63,7 +63,7 @@ export const addingClients = async (req, res) => {
       programs,
     };
 
-    const newClient = await Client(clientData);
+    const newClient = await Client.create(clientData);
 
     res.status(201).json({
       success: true,
