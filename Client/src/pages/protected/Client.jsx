@@ -3,11 +3,13 @@ import { Navbar } from "../../components/Navbar";
 import { useClientStore } from "../../store/ClientStore";
 import { Modal } from "../../components/Modal";
 import { EnrollmentForm } from "../../Forms/EnrollmentForm";
+import { ClientRegistrationForm } from "../../Forms/ClientRegistrationForm";
 
 const Client = () => {
   const { clientData, clients } = useClientStore();
   const [showModal, setShowModal] = useState(false);
   const [selectedClient, setSelectedClient] = useState(null);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   useEffect(() => {
     clientData();
@@ -16,6 +18,10 @@ const Client = () => {
   const handleEnrollClick = (client) => {
     setSelectedClient(client);
     setShowModal(true);
+  };
+
+  const handleRegisterClick = () => {
+    setShowRegisterModal(true);
   };
 
   return (
@@ -32,7 +38,10 @@ const Client = () => {
           />
         </div>
         <div>
-          <button className="ml-3 border-transparent py-2 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02]">
+          <button
+            className="ml-3 border-transparent py-2 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02]"
+            onClick={handleRegisterClick}
+          >
             REGISTER NEW CLIENT
           </button>
         </div>
@@ -87,6 +96,15 @@ const Client = () => {
           client={selectedClient}
           onClose={() => setShowModal(false)}
         />
+      </Modal>
+
+      {/* Modal for Registering a New Client */}
+      <Modal
+        openModal={showRegisterModal}
+        closeModal={() => setShowRegisterModal(false)}
+        title="Register New Client"
+      >
+        <ClientRegistrationForm onClose={() => setShowRegisterModal(false)} />
       </Modal>
     </>
   );
