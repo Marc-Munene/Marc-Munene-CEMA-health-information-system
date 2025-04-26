@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { toast } from "sonner";
 const EnrollmentForm = ({ client, onClose }) => {
   const [programs, setPrograms] = useState([]);
   const [selectedProgram, setSelectedProgram] = useState("");
@@ -7,8 +8,13 @@ const EnrollmentForm = ({ client, onClose }) => {
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
-        const res = await fetch("/api/programs");
-        const data = await res.json();
+        const res = await fetch("http://localhost:8000/api/programs", {
+          credentials: "include",
+        });
+
+        const json = await res.json();
+        console.log(json);
+        const { data } = json;
         setPrograms(data);
       } catch (error) {
         console.error("Error fetching programs", error);
@@ -21,18 +27,18 @@ const EnrollmentForm = ({ client, onClose }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const payload = {
-      firstName: client.firstName,
-      lastName: client.lastName,
-      program: selectedProgram,
-      dateOfEnrollment: enrollDate,
+      clientId: client._id,
+      programId: selectedProgram,
+      dateEnrolled: enrollDate,
     };
 
     try {
-      const res = await fetch("/api/enroll", {
+      const res = await fetch("http://localhost:8000/api/enrollment", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(payload),
       });
 
@@ -40,11 +46,11 @@ const EnrollmentForm = ({ client, onClose }) => {
         throw new Error("Failed to enroll");
       }
 
-      alert("Enrolled successfully");
+      toast.success("Enrolled successfully");
       onClose();
-    } catch (err) {
-      console.error(err);
-      alert("Enrollment failed");
+    } catch (error) {
+      console.error(error);
+      toast.error("Enrollment failed");
     }
   };
   return (
@@ -59,8 +65,8 @@ const EnrollmentForm = ({ client, onClose }) => {
         >
           <option value="">Select a program</option>
           {programs.map((prog) => (
-            <option key={prog._id} value={prog.name}>
-              {prog.name}
+            <option key={prog._id} value={prog._id}>
+              {prog.programName}
             </option>
           ))}
         </select>
