@@ -3,6 +3,9 @@ import express from "express";
 // Home route
 import { getHome } from "./controllers/home.js";
 
+//cors import
+import cors from "cors";
+
 //routes
 import { doctorRouter } from "./Routes/doctorsRoute.js";
 import { programRouter } from "./Routes/programsRoute.js";
@@ -20,11 +23,25 @@ const app = express();
 
 const PORT = process.env.PORT || 8080;
 
+//cookie parser middleware
+app.use(cookieParser());
+
 //middleware
 app.use(express.json());
 
-//cookie parser
-app.use(cookieParser());
+// cors configuration
+// const corsOptions = {
+//   origin: process.env.CLIENT_URL,
+//   credentials: true,
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+// };
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
 
 //connecting to database
 connectDB();
@@ -35,11 +52,11 @@ app.get("/", getHome);
 app.use(
   "/api",
   authRouter,
-  doctorRouter,
   doctorAuthentication,
-  programRouter,
   clientsRouter,
-  enrollmentRouter
+  programRouter,
+  enrollmentRouter,
+  doctorRouter
 );
 
 app.listen(PORT, () => {

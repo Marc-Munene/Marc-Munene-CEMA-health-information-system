@@ -76,6 +76,8 @@ export const login = async (req, res) => {
       // maxAge = how long the cookie is valid for in milliseconds
     });
 
+    console.log("cookie set:", process.env.AUTH_COOKIE_NAME, token);
+
     res.status(200).json({
       success: true,
       message: "Login successful",

@@ -49,9 +49,17 @@ export const getOneProgram = async (req, res) => {
 //adding a program
 export const addingPrograms = async (req, res) => {
   try {
-    const { programName, status, createdBy, doctorId } = req.body;
+    const { programName, status, description, startDate, createdBy, doctorId } =
+      req.body;
 
-    const programeData = { programName, status, createdBy, doctorId };
+    const programeData = {
+      programName,
+      status,
+      description,
+      startDate,
+      createdBy,
+      doctorId,
+    };
 
     const newProgram = await Program.create(programeData);
 
