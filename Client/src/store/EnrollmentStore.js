@@ -12,15 +12,15 @@ const useEnrollmentStore = create((set) => ({
 
       // const json = await response.json();
 
-      const { data } = await response.json();
+      if (response.ok) {
+        const { data } = await response.json();
 
-      set({
-        enrollments: data,
-      });
-
-      console.log(data);
+        set({
+          enrollments: data,
+        });
+      }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   },
 }));

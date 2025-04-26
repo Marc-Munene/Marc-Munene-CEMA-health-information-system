@@ -12,15 +12,15 @@ const useProgramStore = create((set) => ({
 
       // const json = await response.json();
 
-      const { data } = await response.json();
+      if (response.ok) {
+        const { data } = await response.json();
 
-      set({
-        programs: data,
-      });
-
-      console.log(data);
+        set({
+          programs: data,
+        });
+      }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   },
 }));

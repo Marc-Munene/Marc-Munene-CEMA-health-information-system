@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
-
-const EnrollmentForm = () => {
+import { useState, useEffect } from "react";
+const EnrollmentForm = ({ client, onClose }) => {
   const [programs, setPrograms] = useState([]);
   const [selectedProgram, setSelectedProgram] = useState("");
   const [enrollDate, setEnrollDate] = useState("");
@@ -50,12 +49,11 @@ const EnrollmentForm = () => {
   };
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <h2 className="text-base font-semibold">Enroll {client.firstName}</h2>
       <div>
-        <label htmlFor="program">Program</label>
+        <label className="block font-semibold">Program</label>
         <select
           value={selectedProgram}
-          onChange={selectedprogram(e.target.value)}
+          onChange={(e) => setSelectedProgram(e.target.value)}
           className="w-full border rounded-md p-2"
           required
         >

@@ -1,75 +1,77 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "../../components/Navbar";
 import { useClientStore } from "../../store/ClientStore";
+import { Modal } from "../../components/Modal";
+import { EnrollmentForm } from "../../Forms/EnrollmentForm";
 
 const Client = () => {
   const { clientData, clients } = useClientStore();
+  const [showModal, setShowModal] = useState(false);
+  const [selectedClient, setSelectedClient] = useState(null);
 
   useEffect(() => {
     clientData();
   }, []);
+
+  const handleEnrollClick = (client) => {
+    setSelectedClient(client);
+    setShowModal(true);
+  };
+
   return (
     <>
       <Navbar />
       <div className="max-w-6xl mx-auto py-3 rounded-lg px-4 sm:px-6 lg:px-8">
-        <div>
-          <div className="flex justify-center">
-            <input
-              type="text"
-              className="border rounded-full shadow-xl mb-5 py-3 px-6 w-[40%] placeholder:text-gray-700"
-              placeholder="Search Client"
-              autoFocus
-            />
-          </div>
-          <div>
-            <button className="ml-3 border-transparent py-2 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02]">
-              REGISTER NEW CLIENT
-            </button>
-          </div>
-          <div className="flex justify-center mb-2">
-            <h1 className="text-2xl font-semibold"> Resgistered clients</h1>
-          </div>
-          <div className="p-4">
-            <table className="w-full text-left text-base overflow-hidden">
-              <thead className="bg-gray-200">
-                <tr>
-                  <th className="p-3 text-sm md:text-xl text-center">
-                    FIRST NAME
-                  </th>
-                  <th className="p-3 text-sm md:text-xl text-center">
-                    LAST NAME
-                  </th>
+        {/* Search input and register button here */}
 
-                  <th className="p-3 text-sm md:text-xl text-center">
-                    PHONE NO.
-                  </th>
-                  <th className="p-3 text-sm md:text-xl text-center">DOB</th>
-                  <th className="p-3 text-sm md:text-xl text-center">GENDER</th>
-                  <th className="p-3 text-sm md:text-xl text-center">ACTION</th>
+        <div className="p-4">
+          <table className="w-full text-left text-base overflow-hidden">
+            <thead className="bg-gray-200">
+              <tr>
+                <th className="p-3 text-center">FIRST NAME</th>
+                <th className="p-3 text-center">LAST NAME</th>
+                <th className="p-3 text-center">PHONE NO.</th>
+                <th className="p-3 text-center">DOB</th>
+                <th className="p-3 text-center">GENDER</th>
+                <th className="p-3 text-center">ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              {clients.map((client, i) => (
+                <tr className="border-b border-gray-300" key={i}>
+                  <td className="py-3 text-center">{client.firstName}</td>
+                  <td className="py-3 text-center">{client.lastName}</td>
+                  <td className="py-3 text-center">{client.phoneNumber}</td>
+                  <td className="py-3 text-center">{client.DOB}</td>
+                  <td className="py-3 text-center">{client.gender}</td>
+                  <td className="py-3 text-center">
+                    <div className="flex justify-center">
+                      <button
+                        onClick={() => handleEnrollClick(client)}
+                        className="bg-green-300 hover:bg-green-500 text-black py-1 px-3 rounded-md shadow-md"
+                      >
+                        ENROLL
+                      </button>
+                    </div>
+                  </td>
                 </tr>
-              </thead>
-              <tbody>
-                {clients.map((elements, i) => (
-                  <tr className="border-b border-gray-300" key={i}>
-                    <td className="py-3 text-center">{elements.firstName}</td>
-                    <td className="py-3 text-center">{elements.lastName}</td>
-                    <td className="py-3 text-center">{elements.phoneNumber}</td>
-                    <td className="py-3 text-center">{elements.DOB}</td>
-                    <td className="py-3 text-center">{elements.gender}</td>
-                    <td className="py-3 text-center">
-                      <div className="flex justify-center">
-                        <button className="border-transparent py-1 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02] ">
-                          ENROLL
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
+
+      {/* Modal for enrollment form */}
+      <Modal
+        openModal={showModal}
+        closeModal={() => setShowModal(false)}
+        title={`Enroll ${selectedClient?.firstName} ${selectedClient?.lastName}`}
+      >
+        <EnrollmentForm
+          client={selectedClient}
+          onClose={() => setShowModal(false)}
+        />
+      </Modal>
     </>
   );
 };

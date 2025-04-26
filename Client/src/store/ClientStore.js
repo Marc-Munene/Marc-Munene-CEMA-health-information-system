@@ -9,15 +9,16 @@ const useClientStore = create((set) => ({
         credentials: "include",
       });
 
-      const { data } = await response.json();
+      if (response.ok) {
+        const { data } = await response.json();
 
-      set({
-        clients: data,
-      });
-
-      console.log(data);
+        set({
+          clients: data,
+        });
+      }
+      // console.log({ data });
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   },
 }));
