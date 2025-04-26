@@ -1,20 +1,30 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "../../components/Navbar";
 import { useProgramStore } from "../../store/ProgramStore";
+import { ProgramForm } from "../../Forms/ProgramForm";
+import { Modal } from "../../components/Modal";
 
-const Programs = () => {
+const Programs = ({ closeModal }) => {
   const { programData, programs } = useProgramStore();
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     programData();
   }, []);
+
+  const handleCreateProgram = () => {
+    setShowModal(true); // Open the modal when the button is clicked
+  };
   return (
     <>
       <Navbar />
       <div className="max-w-6xl mx-auto py-3 rounded-lg px-4 sm:px-6 lg:px-8">
         <div>
           <div>
-            <button className="ml-3 border-transparent py-2 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02]">
+            <button
+              className="ml-3 border-transparent py-2 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02]"
+              onClick={handleCreateProgram}
+            >
               CREATE NEW PROGRAM
             </button>
           </div>
@@ -60,6 +70,14 @@ const Programs = () => {
           </div>
         </div>
       </div>
+      {/* Modal Component */}
+      <Modal
+        openModal={showModal}
+        closeModal={() => setShowModal(false)}
+        title="Create New Program"
+      >
+        <ProgramForm closeModal={() => setShowModal(false)} />
+      </Modal>
     </>
   );
 };
