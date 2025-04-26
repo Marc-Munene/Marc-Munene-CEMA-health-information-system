@@ -1,6 +1,6 @@
 import { FaBookOpenReader } from "react-icons/fa6";
 import { IoIosPeople } from "react-icons/io";
-import { MdHome } from "react-icons/md";
+import { FiLogOut } from "react-icons/fi";
 import { RiMiniProgramFill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 
@@ -57,6 +57,10 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
+          <span className="flex items-center text-red-500 gap-3 mr-2 cursor-pointer hover:backdrop-blur-lg hover:rounded-4xl hover:shadow-2xl hover:bg-gray-100 hover:p-3 transform transform-fill duration-300 ease-in-out hover:scale-[1.06] ">
+            <FiLogOut size={30} />
+            Logout
+          </span>
         </nav>
       </header>
     </>

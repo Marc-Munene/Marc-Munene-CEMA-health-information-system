@@ -6,7 +6,7 @@ const GlobalLayout = () => {
     <>
       <div>
         <Outlet />
-        <Toaster position="top-center" richColors />
+        <Toaster position="top-right" richColors />
       </div>
     </>
   );
