@@ -1,6 +1,13 @@
+import { useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
+import { useEnrollmentStore } from "../../store/EnrollmentStore";
 
 const Enrollment = () => {
+  const { enrollmentData, enrollments } = useEnrollmentStore();
+
+  useEffect(() => {
+    enrollmentData();
+  }, []);
   return (
     <>
       <Navbar />
@@ -30,14 +37,23 @@ const Enrollment = () => {
                 </tr>
               </thead>
               <tbody>
-                {/* hardcoded body */}
-                <tr className="border-b border-gray-300">
-                  <td className="py-3 text-center">CAROLYNE</td>
-                  <td className="py-3 text-center">NGUGI</td>
-                  <td className="py-3 text-center">4-25-2025</td>
-                  <td className="py-3 text-center">ACTIVE</td>
-                  <td className="py-3 text-center">HIV</td>
-                </tr>
+                {enrollments.map((elements, i) => (
+                  <tr className="border-b border-gray-300" key={i}>
+                    <td className="py-3 text-center">
+                      {elements.clientId.firstName}{" "}
+                    </td>
+                    <td className="py-3 text-center">
+                      {elements.clientId.lastName}{" "}
+                    </td>
+                    <td className="py-3 text-center">
+                      {elements.dateEnrolled}
+                    </td>
+                    <td className="py-3 text-center">{elements.status}</td>
+                    <td className="py-3 text-center">
+                      {elements.programId.programName}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

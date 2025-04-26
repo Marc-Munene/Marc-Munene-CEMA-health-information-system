@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 
-const Modal = ({ openModal, closeModal, children }) => {
+const Modal = ({ openModal, closeModal, title, children }) => {
   if (!openModal) return null;
 
   return (
@@ -10,15 +10,15 @@ const Modal = ({ openModal, closeModal, children }) => {
     >
       <div
         className="relative bg-white rounded-md p-4 w-[60%]"
-        onClick={(e) => e.stopPropagation()} // Prevents modal from closing when clicking inside
+        onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button inside the modal */}
         <button
           className="absolute top-4 right-4 text-gray-500"
           onClick={closeModal}
         >
           <X />
         </button>
+        <h2 className="text-xl font-semibold mb-4">{title}</h2>
         {children}
       </div>
     </div>
