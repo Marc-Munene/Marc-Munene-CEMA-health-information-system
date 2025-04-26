@@ -23,6 +23,22 @@ const Client = () => {
       <Navbar />
       <div className="max-w-6xl mx-auto py-3 rounded-lg px-4 sm:px-6 lg:px-8">
         {/* Search input and register button here */}
+        <div className="flex justify-center">
+          <input
+            type="text"
+            className="border rounded-full shadow-xl mb-5 py-3 px-6 w-[40%] placeholder:text-gray-700"
+            placeholder="Search Client"
+            autoFocus
+          />
+        </div>
+        <div>
+          <button className="ml-3 border-transparent py-2 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02]">
+            REGISTER NEW CLIENT
+          </button>
+        </div>
+        <div className="flex justify-center mb-2">
+          <h1 className="text-2xl font-semibold"> Resgistered clients</h1>
+        </div>
 
         <div className="p-4">
           <table className="w-full text-left text-base overflow-hidden">

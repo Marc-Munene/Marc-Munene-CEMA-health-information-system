@@ -13,7 +13,7 @@ const Navbar = () => {
           <div className=" md:flex flex-grow justify-center">
             <ul className="flex space-x-4 lg:space-x-8 text-sm sm:text-base md:text-xl lg:text-2xl">
               <li>
-                <NavLink
+                {/* <NavLink
                   to={"/"}
                   className="flex items-center justify-around py-3 hover:backdrop-blur-lg hover:rounded-4xl  hover:shadow-2xl hover:bg-gray-100 hover:px-3  transform transform-fill duration-300 ease-in-out hover:scale-[1.06] "
                 >
@@ -21,7 +21,7 @@ const Navbar = () => {
                     <MdHome size={30} />
                     Home
                   </span>
-                </NavLink>
+                </NavLink> */}
               </li>
               <li>
                 <NavLink
