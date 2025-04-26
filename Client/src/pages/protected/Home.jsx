@@ -1,10 +1,10 @@
-import { Navbar } from "../../components/Navbar";
-import { SignUp } from "../Auth/SignUp";
+import { Login } from "../Auth/Login";
+// import { SignUp } from "../Auth/SignUp";
 
 const Home = () => {
   return (
     <>
-      <Navbar />
+      <Login />
       <div
         className="min-h-screen mx-auto py-3 rounded-lg px-4 sm:px-6 lg:px-8"
         style={{
@@ -15,7 +15,7 @@ const Home = () => {
           backgroundAttachment: "fixed",
         }}
       ></div>
-      <SignUp />
+      {/* <SignUp /> */}
     </>
   );
 };
