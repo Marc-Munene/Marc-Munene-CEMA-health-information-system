@@ -4,16 +4,34 @@ import { useClientStore } from "../../store/ClientStore";
 import { Modal } from "../../components/Modal";
 import { EnrollmentForm } from "../../Forms/EnrollmentForm";
 import { ClientRegistrationForm } from "../../Forms/ClientRegistrationForm";
+import debounce from "debounce";
 
 const Client = () => {
   const { clientData, clients } = useClientStore();
   const [showModal, setShowModal] = useState(false);
   const [selectedClient, setSelectedClient] = useState(null);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [SearchTerm, setSearchTerm] = useState("");
+  const [filteredClients, setFilteredClients] = useState(clients);
 
   useEffect(() => {
     clientData();
   }, []);
+
+  // Debounced search function (using 'debounce' package)
+  const debouncedSearch = debounce((term) => {
+    const filteredClients = clients.filter(
+      (client) =>
+        client.firstName.toLowerCase().includes(term.toLowerCase()) ||
+        client.lastName.toLowerCase().includes(term.toLowerCase())
+    );
+    setFilteredClients(filteredClients);
+  }, 500); //Delay of 500ms
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+    debouncedSearch(e.target.value);
+  };
 
   const handleEnrollClick = (client) => {
     setSelectedClient(client);
@@ -35,6 +53,8 @@ const Client = () => {
             className="border rounded-full shadow-xl mb-5 py-3 px-6 w-[40%] placeholder:text-gray-700"
             placeholder="Search Client"
             autoFocus
+            value={SearchTerm}
+            onChange={handleSearchChange}
           />
         </div>
         <div>
@@ -62,7 +82,7 @@ const Client = () => {
               </tr>
             </thead>
             <tbody>
-              {clients.map((client, i) => (
+              {filteredClients.map((client, i) => (
                 <tr className="border-b border-gray-300" key={i}>
                   <td className="py-3 text-center">{client.firstName}</td>
                   <td className="py-3 text-center">{client.lastName}</td>
