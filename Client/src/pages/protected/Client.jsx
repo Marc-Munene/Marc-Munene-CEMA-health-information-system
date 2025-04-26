@@ -46,7 +46,7 @@ const Client = () => {
     <>
       <Navbar />
       <div className="max-w-6xl mx-auto py-3 rounded-lg px-4 sm:px-6 lg:px-8">
-        {/* Search input and register button here */}
+        {/* Search input and register button */}
         <div className="flex justify-center">
           <input
             type="text"
@@ -66,13 +66,14 @@ const Client = () => {
           </button>
         </div>
         <div className="flex justify-center mb-2">
-          <h1 className="text-2xl font-semibold"> Resgistered clients</h1>
+          <h1 className="text-2xl font-semibold">Registered Clients</h1>
         </div>
 
         <div className="p-4">
           <table className="w-full text-left text-base overflow-hidden">
             <thead className="bg-gray-200">
               <tr>
+                <th className="p-3 text-center">#</th> {/* Add column for numbering */}
                 <th className="p-3 text-center">FIRST NAME</th>
                 <th className="p-3 text-center">LAST NAME</th>
                 <th className="p-3 text-center">PHONE NO.</th>
@@ -84,6 +85,7 @@ const Client = () => {
             <tbody>
               {filteredClients.map((client, i) => (
                 <tr className="border-b border-gray-300" key={i}>
+                  <td className="py-3 text-center">{i + 1}</td> {/* Display ascending number */}
                   <td className="py-3 text-center">{client.firstName}</td>
                   <td className="py-3 text-center">{client.lastName}</td>
                   <td className="py-3 text-center">{client.phoneNumber}</td>

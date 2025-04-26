@@ -15,6 +15,7 @@ const Programs = ({ closeModal }) => {
   const handleCreateProgram = () => {
     setShowModal(true); // Open the modal when the button is clicked
   };
+
   return (
     <>
       <Navbar />
@@ -35,11 +36,12 @@ const Programs = ({ closeModal }) => {
             <table className="w-full text-left text-base overflow-hidden">
               <thead className="bg-gray-200">
                 <tr>
+                  <th className="p-3 text-sm md:text-xl text-center">#</th>{" "}
+                  {/* Add column for numbering */}
                   <th className="p-3 text-sm md:text-xl text-center">
                     PROGRAM NAME
                   </th>
                   <th className="p-3 text-sm md:text-xl text-center">STATUS</th>
-
                   <th className="p-3 text-sm md:text-xl text-center">
                     START DATE
                   </th>
@@ -52,13 +54,14 @@ const Programs = ({ closeModal }) => {
               <tbody>
                 {programs.map((elements, i) => (
                   <tr className="border-b border-gray-300" key={i}>
+                    <td className="py-3 text-center">{i + 1}</td>{" "}
                     <td className="py-3 text-center">{elements.programName}</td>
                     <td className="py-3 text-center">{elements.status}</td>
                     <td className="py-3 text-center">{elements.startDate}</td>
                     <td className="py-3 text-center">{elements.createdBy}</td>
                     <td className="py-3 text-center">
                       <div className="flex justify-center">
-                        <button className="border-transparent py-1 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02] ">
+                        <button className="border-transparent py-1 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02]">
                           OPEN
                         </button>
                       </div>

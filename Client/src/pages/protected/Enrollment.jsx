@@ -20,6 +20,7 @@ const Enrollment = () => {
             <table className="w-full text-left text-base overflow-hidden">
               <thead className="bg-gray-200">
                 <tr>
+                  <th className="p-3 text-center">#</th>
                   <th className="p-3 text-sm md:text-xl text-center">
                     FIRST NAME
                   </th>
@@ -39,6 +40,7 @@ const Enrollment = () => {
               <tbody>
                 {enrollments.map((elements, i) => (
                   <tr className="border-b border-gray-300" key={i}>
+                    <td className="py-3 text-center">{i + 1}</td>{" "}
                     <td className="py-3 text-center">
                       {elements.clientId.firstName}{" "}
                     </td>
