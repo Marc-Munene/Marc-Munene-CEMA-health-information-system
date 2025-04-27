@@ -68,10 +68,10 @@ export const login = async (req, res) => {
       // path = where the cookie is valid
       path: "/",
       // domain = what domain the cookie is valid on
-      domain:
-        process.env.NODE_ENV === "production"
-          ? "cema-health.vercel.app"
-          : undefined,
+      // domain: 
+      //   process.env.NODE_ENV === "production"
+      //     ? "cema-health.vercel.app"
+      //     : undefined,
       // secure = only send cookie over https
       secure: process.env.NODE_ENV === "production",
       // sameSite = only send cookie if the request is coming from the same origin
