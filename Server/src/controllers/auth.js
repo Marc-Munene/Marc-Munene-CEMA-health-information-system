@@ -70,12 +70,12 @@ export const login = async (req, res) => {
       // domain = what domain the cookie is valid on
       domain:
         process.env.NODE_ENV === "production"
-          ? "marc-munene-cema-health-information-1zov.onrender.com"
+          ? ".cema-health.vercel.app"
           : undefined,
       // secure = only send cookie over https
       secure: process.env.NODE_ENV === "production",
       // sameSite = only send cookie if the request is coming from the same origin
-      sameSite: "none", // "strict" | "lax" | "none" (secure must be true)
+      sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // "strict" | "lax" | "none" (secure must be true)
       // maxAge = how long the cookie is valid for in milliseconds
     });
 
