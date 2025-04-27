@@ -4,7 +4,6 @@ import { Login } from "../Auth/Login";
 const Home = () => {
   return (
     <>
-      <Login />
       <div
         className="min-h-screen mx-auto py-3 rounded-lg px-4 sm:px-6 lg:px-8"
         style={{
@@ -14,7 +13,9 @@ const Home = () => {
           backgroundRepeat: "no-repeat",
           backgroundAttachment: "fixed",
         }}
-      ></div>
+      >
+        <Login />
+      </div>
       {/* <SignUp /> */}
     </>
   );
