@@ -57,7 +57,16 @@ const Programs = ({ closeModal }) => {
                     <td className="py-3 text-center">{i + 1}</td>{" "}
                     <td className="py-3 text-center">{elements.programName}</td>
                     <td className="py-3 text-center">{elements.status}</td>
-                    <td className="py-3 text-center">{elements.startDate}</td>
+                    <td className="py-3 text-center">
+                      {new Date(elements.startDate).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        }
+                      )}
+                    </td>
                     <td className="py-3 text-center">{elements.createdBy}</td>
                     <td className="py-3 text-center">
                       <div className="flex justify-center">
