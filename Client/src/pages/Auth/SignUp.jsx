@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -29,12 +31,10 @@ const SignUp = () => {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to register client");
+      if (response.ok) {
+        toast.success("Sign Up Successful");
+        navigate("/");
       }
-
-      toast.success("Sign Up Successful");
-      navigate("/");
     } catch (error) {
       console.log(error);
       toast.error("Sign Up Failed. Please try again.");
@@ -42,7 +42,16 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div
+      className="min-h-screen flex items-center justify-center"
+      style={{
+        backgroundImage: "url('/signup.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <form
         onSubmit={handleSubmit}
         className="bg-opacity-50  backdrop-blur-sm rounded-xl shadow-xl py-3 px-5 w-full max-w-md"
