@@ -1,5 +1,4 @@
 import { Login } from "../Auth/Login";
-// import { SignUp } from "../Auth/SignUp";
 
 const Home = () => {
   return (
@@ -16,7 +15,6 @@ const Home = () => {
       >
         <Login />
       </div>
-      {/* <SignUp /> */}
     </>
   );
 };
