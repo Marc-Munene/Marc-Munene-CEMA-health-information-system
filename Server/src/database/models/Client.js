@@ -7,7 +7,7 @@ const clientSchema = new Schema(
     DOB: { type: Date, required: true },
     gender: { type: String, required: true, enum: ["Male", "Female"] },
     phoneNumber: { type: String, required: true },
-    email: { type: String, unique: true },
+    email: { type: String, unique: true, sparse: true },
   },
 
   {
