@@ -69,7 +69,9 @@ export const login = async (req, res) => {
       path: "/",
       // domain = what domain the cookie is valid on
       domain:
-        process.env.NODE_ENV === "production" ? ".onrender.com" : undefined,
+        process.env.NODE_ENV === "production"
+          ? "marc-munene-cema-health-information-1zov.onrender.com"
+          : undefined,
       // secure = only send cookie over https
       secure: process.env.NODE_ENV === "production",
       // sameSite = only send cookie if the request is coming from the same origin
