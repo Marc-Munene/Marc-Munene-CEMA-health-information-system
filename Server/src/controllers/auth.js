@@ -70,7 +70,7 @@ export const login = async (req, res) => {
       // domain = what domain the cookie is valid on
       domain:
         process.env.NODE_ENV === "production"
-          ? process.env.CLIENT_URL
+          ? process.env.CLIENT_URL.replace("https://", "")
           : undefined,
       // secure = only send cookie over https
       secure: process.env.NODE_ENV === "production",
