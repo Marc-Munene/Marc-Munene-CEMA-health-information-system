@@ -26,7 +26,14 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to={"/programs"}
-                  className="flex items-center justify-around py-3 hover:backdrop-blur-lg hover:rounded-4xl hover:shadow-2xl hover:bg-gray-100 hover:px-3  transform transform-fill duration-300 ease-in-out hover:scale-[1.06] "
+                  className={({ isActive }) =>
+                    `flex items-center justify-around py-3 px-4 rounded-3xl transition-all duration-300 ease-in-out 
+                  ${
+                    isActive
+                      ? "bg-blue-100 text-blue-700 scale-[1.08] shadow-2xl"
+                      : "hover:backdrop-blur-lg hover:rounded-4xl hover:shadow-2xl hover:bg-blue-100 hover:px-3  transform transform-fill  hover:scale-[1.06] "
+                  }`
+                  }
                 >
                   <span className="flex items-center gap-2">
                     <RiMiniProgramFill size={30} /> Programs
@@ -36,7 +43,14 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to={"/clients"}
-                  className="flex items-center justify-around py-3 hover:backdrop-blur-lg hover:rounded-4xl hover:shadow-2xl hover:bg-gray-100 hover:px-3  transform transform-fill duration-300 ease-in-out hover:scale-[1.06] "
+                  className={({ isActive }) =>
+                    `flex items-center justify-around py-3 px-4 rounded-3xl transition-all duration-300 ease-in-out 
+                  ${
+                    isActive
+                      ? "bg-blue-100 text-blue-700 scale-[1.08] shadow-2xl"
+                      : "hover:backdrop-blur-lg hover:rounded-4xl hover:shadow-2xl hover:bg-blue-100 hover:px-3  transform transform-fill  hover:scale-[1.06] "
+                  }`
+                  }
                 >
                   <span className="flex items-center gap-2">
                     <IoIosPeople size={30} />
@@ -47,7 +61,14 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to={"/enrollment"}
-                  className="flex items-center justify-around py-3 hover:backdrop-blur-lg hover:rounded-4xl hover:shadow-2xl hover:bg-gray-100 hover:px-3  transform transform-fill duration-300 ease-in-out hover:scale-[1.06] "
+                  className={({ isActive }) =>
+                    `flex items-center justify-around py-3 px-4 rounded-3xl transition-all duration-300 ease-in-out 
+                  ${
+                    isActive
+                      ? "bg-blue-100 text-blue-700 scale-[1.08] shadow-2xl"
+                      : "hover:backdrop-blur-lg hover:rounded-4xl hover:shadow-2xl hover:bg-blue-100 hover:px-3  transform transform-fill  hover:scale-[1.06] "
+                  }`
+                  }
                 >
                   <span className="flex items-center gap-2">
                     <FaBookOpenReader size={30} />
@@ -57,7 +78,7 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <span className="flex items-center text-red-500 gap-3 mr-2 cursor-pointer hover:backdrop-blur-lg hover:rounded-4xl hover:shadow-2xl hover:bg-gray-100 hover:p-3 transform transform-fill duration-300 ease-in-out hover:scale-[1.06] ">
+          <span className="flex items-center text-red-500 gap-3 mr-2 cursor-pointer hover:backdrop-blur-lg hover:rounded-4xl hover:shadow-2xl hover:bg-red-100 hover:p-3 hover:text-red-500 transform transform-fill duration-300 ease-in-out hover:scale-[1.06] ">
             <FiLogOut size={30} />
             Logout
           </span>

@@ -73,7 +73,8 @@ const Client = () => {
           <table className="w-full text-left text-base overflow-hidden">
             <thead className="bg-gray-200">
               <tr>
-                <th className="p-3 text-center">#</th> {/* Add column for numbering */}
+                <th className="p-3 text-center">#</th>{" "}
+                {/* Add column for numbering */}
                 <th className="p-3 text-center">FIRST NAME</th>
                 <th className="p-3 text-center">LAST NAME</th>
                 <th className="p-3 text-center">PHONE NO.</th>
@@ -85,7 +86,8 @@ const Client = () => {
             <tbody>
               {filteredClients.map((client, i) => (
                 <tr className="border-b border-gray-300" key={i}>
-                  <td className="py-3 text-center">{i + 1}</td> {/* Display ascending number */}
+                  <td className="py-3 text-center">{i + 1}</td>{" "}
+                  {/* Display ascending number */}
                   <td className="py-3 text-center">{client.firstName}</td>
                   <td className="py-3 text-center">{client.lastName}</td>
                   <td className="py-3 text-center">{client.phoneNumber}</td>
@@ -95,7 +97,7 @@ const Client = () => {
                     <div className="flex justify-center">
                       <button
                         onClick={() => handleEnrollClick(client)}
-                        className="bg-green-300 hover:bg-green-500 text-black py-1 px-3 rounded-md shadow-md"
+                        className="bg-green-300 hover:bg-green-500 text-black py-1 px-3 rounded-md shadow-md cursor-pointer"
                       >
                         ENROLL
                       </button>
