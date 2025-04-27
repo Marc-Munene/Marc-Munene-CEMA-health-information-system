@@ -7,7 +7,7 @@ export const doctorAuthentication = async (req, res, next) => {
     const token = req.cookies[process.env.AUTH_COOKIE_NAME];
 
     // console.log("req.cookies", req.cookies);
-    
+
     // console.log("token", token);
 
     if (!token) throw new Error("token not found!");

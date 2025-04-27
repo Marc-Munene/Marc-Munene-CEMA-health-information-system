@@ -66,7 +66,7 @@ export const login = async (req, res) => {
 
       httpOnly: true,
       // path = where the cookie is valid
-      path: "/",
+      // path: "/",
       // domain = what domain the cookie is valid on
       domain:
         process.env.NODE_ENV === "production"
