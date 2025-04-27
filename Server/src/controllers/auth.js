@@ -70,7 +70,7 @@ export const login = async (req, res) => {
       // domain = what domain the cookie is valid on
       domain:
         process.env.NODE_ENV === "production"
-          ? ".cema-health.vercel.app"
+          ? "cema-health.vercel.app"
           : undefined,
       // secure = only send cookie over https
       secure: process.env.NODE_ENV === "production",
