@@ -48,7 +48,14 @@ const Enrollment = () => {
                       {elements.clientId.lastName}{" "}
                     </td>
                     <td className="py-3 text-center">
-                      {elements.dateEnrolled}
+                      {new Date(elements.dateEnrolled).toLocaleDateString(
+                        "en-US",
+                        {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        }
+                      )}
                     </td>
                     <td className="py-3 text-center">{elements.status}</td>
                     <td className="py-3 text-center">
