@@ -2,6 +2,7 @@ import { Schema, model } from "mongoose";
 
 const programSchema = new Schema(
   {
+    doctor: { type: Schema.Types.ObjectId, ref: "Doctor", required: true },
     programName: { type: String, required: true },
     status: {
       type: String,
@@ -11,8 +12,6 @@ const programSchema = new Schema(
     },
     description: { type: String, required: true },
     startDate: { type: Date, required: true },
-    createdBy: { type: String, required: true },
-    doctorId: { type: String, sparse: true },
   },
   {
     timestamps: true,

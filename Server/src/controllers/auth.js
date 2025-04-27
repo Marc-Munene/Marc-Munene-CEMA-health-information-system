@@ -91,3 +91,16 @@ export const login = async (req, res) => {
     });
   }
 };
+
+export const currentDoctor = (req, res) => {
+  res.json({
+    success: true,
+    data: req.doctor,
+  });
+};
+
+export const logOut = (req, res) => {
+  res.clearCookie(process.env.AUTH_COOKIE_NAME).json({
+    success: true,
+  });
+};

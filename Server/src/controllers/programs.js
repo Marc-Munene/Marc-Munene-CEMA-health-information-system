@@ -2,7 +2,7 @@ import { Program } from "../database/models/Program.js";
 //get all programs
 export const getPrograms = async (req, res) => {
   try {
-    const programs = await Program.find();
+    const programs = await Program.find().populate("doctor");
 
     res.status(200).json({
       success: true,
@@ -49,16 +49,14 @@ export const getOneProgram = async (req, res) => {
 //adding a program
 export const addingPrograms = async (req, res) => {
   try {
-    const { programName, status, description, startDate, createdBy, doctorId } =
-      req.body;
+    const { programName, status, description, startDate, doctorId } = req.body;
 
     const programeData = {
       programName,
       status,
       description,
       startDate,
-      createdBy,
-      doctorId,
+      doctor: doctorId,
     };
 
     const newProgram = await Program.create(programeData);
