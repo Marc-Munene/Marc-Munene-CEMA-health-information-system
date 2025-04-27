@@ -18,7 +18,12 @@ const Client = () => {
     clientData();
   }, []);
 
-  // Debounced search function (using 'debounce' package)
+  useEffect(() => {
+    // Whenever clients are updated, set filteredClients immediately
+    setFilteredClients(clients);
+  }, [clients]);
+
+  // Debounced search function (using 'debounce' package) -
   const debouncedSearch = debounce((term) => {
     const filteredClients = clients.filter(
       (client) =>
@@ -91,7 +96,13 @@ const Client = () => {
                   <td className="py-3 text-center">{client.firstName}</td>
                   <td className="py-3 text-center">{client.lastName}</td>
                   <td className="py-3 text-center">{client.phoneNumber}</td>
-                  <td className="py-3 text-center">{client.DOB}</td>
+                  <td className="py-3 text-center">
+                    {new Date(client.DOB).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </td>
                   <td className="py-3 text-center">{client.gender}</td>
                   <td className="py-3 text-center">
                     <div className="flex justify-center">
