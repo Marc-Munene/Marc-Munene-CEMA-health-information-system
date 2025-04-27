@@ -21,6 +21,15 @@ import cookieParser from "cookie-parser";
 
 const app = express();
 
+console.log({ client: process.env.CLIENT_URL });
+
+const corsOptions = {
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+
 const PORT = process.env.PORT || 8080;
 
 //cookie parser middleware
@@ -28,20 +37,6 @@ app.use(cookieParser());
 
 //middleware
 app.use(express.json());
-
-// cors configuration
-// const corsOptions = {
-//   origin: process.env.CLIENT_URL,
-//   credentials: true,
-//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   allowedHeaders: ["Content-Type", "Authorization"],
-// };
-const corsOptions = {
-  origin: process.env.CLIENT_URL,
-  credentials: true,
-};
-
-app.use(cors(corsOptions));
 
 //connecting to database
 connectDB();
