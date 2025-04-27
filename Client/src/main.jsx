@@ -20,11 +20,14 @@ createRoot(document.getElementById("root")).render(
 
           <Route path="/signup" element={<SignUp />} />
 
+          {/* login */}
           <Route path="/" element={<Navigate to="/" />} />
 
           <Route element={<ProtectedWrapper />}>
             {/* <Route element={<App />}> */}
             <Route path="clients" element={<Client />} />
+            <Route path="clients/:id" element={<Client />} />
+
             <Route path="programs" element={<Programs />} />
             <Route path="enrollment" element={<Enrollment />} />
             {/* </Route> */}

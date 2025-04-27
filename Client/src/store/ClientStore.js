@@ -5,9 +5,12 @@ const useClientStore = create((set) => ({
 
   clientData: async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/clients", {
-        credentials: "include",
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/clients`,
+        {
+          credentials: "include",
+        }
+      );
 
       if (response.ok) {
         const { data } = await response.json();

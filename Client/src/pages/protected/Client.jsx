@@ -5,6 +5,7 @@ import { Modal } from "../../components/Modal";
 import { EnrollmentForm } from "../../Forms/EnrollmentForm";
 import { ClientRegistrationForm } from "../../Forms/ClientRegistrationForm";
 import debounce from "debounce";
+import { Link } from "react-router-dom";
 
 const Client = () => {
   const { clientData, clients } = useClientStore();
@@ -105,13 +106,19 @@ const Client = () => {
                   </td>
                   <td className="py-3 text-center">{client.gender}</td>
                   <td className="py-3 text-center">
-                    <div className="flex justify-center">
+                    <div className="flex justify-center gap-4">
                       <button
                         onClick={() => handleEnrollClick(client)}
                         className="bg-green-300 hover:bg-green-500 text-black py-1 px-3 rounded-md shadow-md cursor-pointer"
                       >
                         ENROLL
                       </button>
+                      <Link
+                        to={`/clients/${client._id}`}
+                        className="bg-blue-300 hover:bg-blue-500 text-black py-1 px-3 rounded-md shadow-md cursor-pointer"
+                      >
+                        PROFILE
+                      </Link>
                     </div>
                   </td>
                 </tr>

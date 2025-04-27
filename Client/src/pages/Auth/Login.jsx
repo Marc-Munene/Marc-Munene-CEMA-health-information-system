@@ -20,9 +20,15 @@ const Login = () => {
       password,
     };
 
+    
+
     const loginSuccess = await login(formData);
+    
 
     if (loginSuccess) {
+
+
+
       toast.success("Login Successful");
       navigate("/programs");
     } else {

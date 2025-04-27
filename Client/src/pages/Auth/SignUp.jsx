@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { HiArrowLongLeft } from "react-icons/hi2";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -22,14 +23,17 @@ const SignUp = () => {
     };
 
     try {
-      const response = await fetch("http://localhost:8000/api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/auth/signup`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         toast.success("Sign Up Successful");
@@ -122,6 +126,16 @@ const SignUp = () => {
               className="p-3 border border-black rounded-md placeholder:text-black focus:border-blue-500 outline-none shadow-sm transition-all duration-300"
               placeholder="Enter password"
             />
+          </div>
+
+          <div className="flex items-center  mr-6 mt-3">
+            <NavLink
+              to={"/"}
+              className="text-md flex items-center text-blue-700 cursor-pointer"
+            >
+              <HiArrowLongLeft />
+              Login
+            </NavLink>
           </div>
 
           <button

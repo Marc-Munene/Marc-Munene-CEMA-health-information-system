@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import useAuthStore from "../store/AuthStore";
+import { useProgramStore } from "../store/ProgramStore";
 
-const ProgramForm = () => {
+const ProgramForm = ({ closeModal }) => {
   const [programName, setProgrameName] = useState("");
   const [status, setStatus] = useState("");
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
-  const [createdBy, setCreatedBy] = useState("");
+  const { doctor } = useAuthStore();
+  const { programData } = useProgramStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,24 +20,29 @@ const ProgramForm = () => {
         status,
         description,
         startDate,
-        createdBy,
-        // doctorId,
+        doctorId: doctor._id,
       };
 
-      const response = await fetch("http://localhost:8000/api/programs", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/programs`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to register client");
       }
 
       toast.success("Program registered successfully");
+
+      programData();
+      closeModal();
     } catch (error) {
       console.log(error);
       toast.error("Programmed Registration Failed!");
@@ -84,7 +92,7 @@ const ProgramForm = () => {
           required
         />
       </div>
-      <div>
+      {/* <div>
         <label className="block font-semibold">Created By:</label>
         <input
           className="w-full border rounded-md p-2"
@@ -92,7 +100,7 @@ const ProgramForm = () => {
           value={createdBy}
           onChange={(e) => setCreatedBy(e.target.value)}
         />
-      </div>
+      </div> */}
 
       <button
         type="submit"

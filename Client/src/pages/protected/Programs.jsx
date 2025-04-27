@@ -67,7 +67,9 @@ const Programs = ({ closeModal }) => {
                         }
                       )}
                     </td>
-                    <td className="py-3 text-center">{elements.createdBy}</td>
+                    <td className="py-3 text-center">
+                      DR. {elements.doctor.firstName}
+                    </td>
                     <td className="py-3 text-center">
                       <div className="flex justify-center">
                         <button className="border-transparent py-1 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02]">

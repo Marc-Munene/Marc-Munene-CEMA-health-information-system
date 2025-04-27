@@ -3,16 +3,35 @@ import { useEffect } from "react";
 import useAuthStore from "../../store/AuthStore";
 
 const ProtectedWrapper = () => {
-  const { isLoggedIn } = useAuthStore((state) => state);
+  const { isLoggedIn, setDoctor } = useAuthStore((state) => state);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      navigate("/");
-    }
-  }, [isLoggedIn, navigate]);
+    const getDoctor = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_SERVER_URL}/api/auth/me`,
+          {
+            credentials: "include",
+          }
+        );
 
-  //   if (!isLoggedIn) return null; // Prevent rendering Outlet while redirecting
+        if (!response.ok) {
+          navigate("/");
+        }
+
+        const { data } = await response.json();
+        setDoctor(data);
+      } catch (error) {
+        console.log(error);
+        navigate("/");
+      }
+    };
+
+    if (!isLoggedIn) {
+      getDoctor();
+    }
+  }, []);
 
   return <Outlet />;
 };

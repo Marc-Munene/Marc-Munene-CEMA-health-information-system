@@ -5,15 +5,19 @@ const useProgramStore = create((set) => ({
 
   programData: async () => {
     try {
-      const response = await fetch("http://localhost:8000/api/programs", {
-        credentials: "include",
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/programs`,
+        {
+          credentials: "include",
+        }
+      );
       //   console.log(response);
 
       // const json = await response.json();
 
       if (response.ok) {
         const { data } = await response.json();
+        console.log(data);
 
         set({
           programs: data,

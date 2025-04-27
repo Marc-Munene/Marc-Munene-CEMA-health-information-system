@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
+import { useClientStore } from "../store/ClientStore";
 
 const ClientRegistrationForm = ({ onClose }) => {
   const [firstName, setFirstName] = useState("");
@@ -8,6 +9,7 @@ const ClientRegistrationForm = ({ onClose }) => {
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [gender, setGender] = useState("");
   const [email, setEmail] = useState("");
+  const { clientData } = useClientStore();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,14 +24,17 @@ const ClientRegistrationForm = ({ onClose }) => {
         email: email || undefined,
       };
 
-      const response = await fetch("http://localhost:8000/api/clients", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(payload),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/clients`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to register client");
@@ -37,6 +42,8 @@ const ClientRegistrationForm = ({ onClose }) => {
 
       toast.success("Client registered successfully");
       if (onClose) onClose();
+
+      clientData();
     } catch (error) {
       console.error(error);
       toast.error("Registration failed");

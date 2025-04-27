@@ -2,9 +2,13 @@ import { FaBookOpenReader } from "react-icons/fa6";
 import { IoIosPeople } from "react-icons/io";
 import { FiLogOut } from "react-icons/fi";
 import { RiMiniProgramFill } from "react-icons/ri";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import useAuthStore from "../store/AuthStore";
 
 const Navbar = () => {
+  const { logout } = useAuthStore();
+  const navigate = useNavigate();
+
   return (
     <>
       <header className="sticky top-0 z-50  py-2 md:py-4 mx-auto max-w-6xl ">
@@ -78,10 +82,16 @@ const Navbar = () => {
               </li>
             </ul>
           </div>
-          <span className="flex items-center text-red-500 gap-3 mr-2 cursor-pointer hover:backdrop-blur-lg hover:rounded-4xl hover:shadow-2xl hover:bg-red-100 hover:p-3 hover:text-red-500 transform transform-fill duration-300 ease-in-out hover:scale-[1.06] ">
+          <button
+            onClick={() => {
+              logout();
+              navigate("/");
+            }}
+            className="flex items-center text-red-500 gap-3 mr-2 cursor-pointer hover:backdrop-blur-lg hover:rounded-4xl hover:shadow-2xl hover:bg-red-100 hover:p-3 hover:text-red-500 transform transform-fill duration-300 ease-in-out hover:scale-[1.06] "
+          >
             <FiLogOut size={30} />
             Logout
-          </span>
+          </button>
         </nav>
       </header>
     </>

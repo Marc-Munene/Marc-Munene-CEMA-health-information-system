@@ -1,16 +1,22 @@
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
+import { useEnrollmentStore } from "../store/EnrollmentStore";
+
 const EnrollmentForm = ({ client, onClose }) => {
   const [programs, setPrograms] = useState([]);
   const [selectedProgram, setSelectedProgram] = useState("");
   const [enrollDate, setEnrollDate] = useState("");
+  const { enrollmentData } = useEnrollmentStore();
 
   useEffect(() => {
     const fetchPrograms = async () => {
       try {
-        const res = await fetch("http://localhost:8000/api/programs", {
-          credentials: "include",
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_SERVER_URL}/api/programs`,
+          {
+            credentials: "include",
+          }
+        );
 
         const json = await res.json();
         console.log(json);
@@ -33,20 +39,24 @@ const EnrollmentForm = ({ client, onClose }) => {
     };
 
     try {
-      const res = await fetch("http://localhost:8000/api/enrollment", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(payload),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/enrollment`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(payload),
+        }
+      );
 
       if (!res.ok) {
         throw new Error("Failed to enroll");
       }
 
       toast.success("Enrolled successfully");
+      enrollmentData();
       onClose();
     } catch (error) {
       console.error(error);
