@@ -49,7 +49,7 @@ const Client = () => {
   return (
     <>
       <Navbar />
-      <div className="w-full mx-auto py-3 px-2 sm:px-4 md:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto py-3 rounded-lg px-2 sm:px-4 md:px-6 lg:px-8">
         {/* Search input and register button */}
         <div className="flex flex-col items-center justify-center gap-4 mb-6">
           <div className="w-full flex justify-center">
@@ -78,35 +78,55 @@ const Client = () => {
           </h1>
         </div>
 
-        <div className="p-1 sm:p-2 md:p-4 overflow-x-auto">
-          <table className="min-w-full text-left text-sm sm:text-base">
+        <div className="overflow-x-auto rounded-lg shadow-sm">
+          <table className="w-full text-left text-sm sm:text-base">
             <thead className="bg-gray-200">
               <tr>
-                <th className="p-2 text-center">#</th>
-                <th className="p-2 text-center">FIRST NAME</th>
-                <th className="p-2 text-center">LAST NAME</th>
-                <th className="p-2 text-center">PHONE NO.</th>
-                <th className="p-2 text-center">DOB</th>
-                <th className="p-2 text-center">GENDER</th>
-                <th className="p-2 text-center">ACTION</th>
+                <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
+                  #
+                </th>
+                <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
+                  FIRST NAME
+                </th>
+                <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
+                  LAST NAME
+                </th>
+                <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
+                  PHONE NO.
+                </th>
+                <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
+                  DOB
+                </th>
+                <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
+                  GENDER
+                </th>
+                <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
+                  ACTION
+                </th>
               </tr>
             </thead>
             <tbody>
               {filteredClients.map((client, i) => (
                 <tr className="border-b border-gray-300" key={i}>
-                  <td className="py-2 text-center">{i + 1}</td>
-                  <td className="py-2 text-center">{client.firstName}</td>
-                  <td className="py-2 text-center">{client.lastName}</td>
-                  <td className="py-2 text-center">{client.phoneNumber}</td>
-                  <td className="py-2 text-center">
+                  <td className="py-2 sm:py-3 text-center">{i + 1}</td>
+                  <td className="py-2 sm:py-3 text-center">
+                    {client.firstName}
+                  </td>
+                  <td className="py-2 sm:py-3 text-center">
+                    {client.lastName}
+                  </td>
+                  <td className="py-2 sm:py-3 text-center">
+                    {client.phoneNumber}
+                  </td>
+                  <td className="py-2 sm:py-3 text-center">
                     {new Date(client.DOB).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "short",
                       day: "numeric",
                     })}
                   </td>
-                  <td className="py-2 text-center">{client.gender}</td>
-                  <td className="py-2 text-center">
+                  <td className="py-2 sm:py-3 text-center">{client.gender}</td>
+                  <td className="py-2 sm:py-3 text-center">
                     <div className="flex flex-wrap justify-center gap-2">
                       <button
                         onClick={() => handleEnrollClick(client)}

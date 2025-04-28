@@ -22,26 +22,26 @@ const Enrollment = () => {
           </div>
 
           {/* Responsive Table Wrapper */}
-          <div className="overflow-x-auto p-2 sm:p-4">
-            <table className="min-w-full text-left text-base">
+          <div className="overflow-x-auto rounded-lg shadow-sm">
+            <table className="w-full text-left text-sm sm:text-base">
               <thead className="bg-gray-200">
                 <tr>
-                  <th className="p-2 sm:p-3 text-xs sm:text-sm md:text-base lg:text-lg text-center">
+                  <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
                     #
                   </th>
-                  <th className="p-2 sm:p-3 text-xs sm:text-sm md:text-base lg:text-lg text-center">
+                  <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
                     FIRST NAME
                   </th>
-                  <th className="p-2 sm:p-3 text-xs sm:text-sm md:text-base lg:text-lg text-center">
+                  <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
                     LAST NAME
                   </th>
-                  <th className="p-2 sm:p-3 text-xs sm:text-sm md:text-base lg:text-lg text-center">
+                  <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
                     START DATE
                   </th>
-                  <th className="p-2 sm:p-3 text-xs sm:text-sm md:text-base lg:text-lg text-center">
+                  <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
                     STATUS
                   </th>
-                  <th className="p-2 sm:p-3 text-xs sm:text-sm md:text-base lg:text-lg text-center">
+                  <th className="p-2 sm:p-3 text-center text-xs sm:text-sm md:text-base">
                     PROGRAM
                   </th>
                 </tr>
