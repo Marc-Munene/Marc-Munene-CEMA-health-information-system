@@ -24,7 +24,7 @@ const useProgramStore = create((set) => ({
         });
       }
     } catch (error) {
-      // console.log(error.message);
+      console.log(error);
     }
   },
 }));
