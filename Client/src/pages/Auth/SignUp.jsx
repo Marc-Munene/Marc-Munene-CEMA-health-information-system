@@ -40,7 +40,7 @@ const SignUp = () => {
         navigate("/");
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error("Sign Up Failed. Please try again.");
     }
   };

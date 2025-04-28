@@ -17,14 +17,14 @@ const useProgramStore = create((set) => ({
 
       if (response.ok) {
         const { data } = await response.json();
-        console.log(data);
+        // console.log(data);
 
         set({
           programs: data,
         });
       }
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
     }
   },
 }));

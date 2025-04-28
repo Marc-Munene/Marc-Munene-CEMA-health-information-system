@@ -44,7 +44,7 @@ const ProgramForm = ({ closeModal }) => {
       programData();
       closeModal();
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       toast.error("Programmed Registration Failed!");
     }
   };

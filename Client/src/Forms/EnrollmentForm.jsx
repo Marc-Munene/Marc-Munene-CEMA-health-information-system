@@ -19,11 +19,11 @@ const EnrollmentForm = ({ client, onClose }) => {
         );
 
         const json = await res.json();
-        console.log(json);
+        // console.log(json);
         const { data } = json;
         setPrograms(data);
       } catch (error) {
-        console.error("Error fetching programs", error);
+        // console.error("Error fetching programs", error);
       }
     };
 
@@ -59,7 +59,7 @@ const EnrollmentForm = ({ client, onClose }) => {
       enrollmentData();
       onClose();
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       toast.error("Enrollment failed");
     }
   };

@@ -20,11 +20,9 @@ const Client = () => {
   }, []);
 
   useEffect(() => {
-    // Whenever clients are updated, set filteredClients immediately
     setFilteredClients(clients);
   }, [clients]);
 
-  // Debounced search function (using 'debounce' package) -
   const debouncedSearch = debounce((term) => {
     const filteredClients = clients.filter(
       (client) =>
@@ -32,7 +30,7 @@ const Client = () => {
         client.lastName.toLowerCase().includes(term.toLowerCase())
     );
     setFilteredClients(filteredClients);
-  }, 500); //Delay of 500ms
+  }, 500);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -51,71 +49,74 @@ const Client = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-6xl mx-auto py-3 rounded-lg px-4 sm:px-6 lg:px-8">
+      <div className="w-full mx-auto py-3 px-2 sm:px-4 md:px-6 lg:px-8">
         {/* Search input and register button */}
-        <div className="flex justify-center">
-          <input
-            type="text"
-            className="border rounded-full shadow-xl mb-5 py-3 px-6 w-[40%] placeholder:text-gray-700"
-            placeholder="Search Client"
-            autoFocus
-            value={SearchTerm}
-            onChange={handleSearchChange}
-          />
-        </div>
-        <div>
-          <button
-            className="ml-3 border-transparent py-2 px-3 shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02]"
-            onClick={handleRegisterClick}
-          >
-            REGISTER NEW CLIENT
-          </button>
-        </div>
-        <div className="flex justify-center mb-2">
-          <h1 className="text-2xl font-semibold">Registered Clients</h1>
+        <div className="flex flex-col items-center justify-center gap-4 mb-6">
+          <div className="w-full flex justify-center">
+            <input
+              type="text"
+              className="border rounded-full shadow-md sm:shadow-xl py-2 px-6 w-72 sm:w-100 placeholder:text-gray-700 text-sm sm:text-base"
+              placeholder="Search Client"
+              autoFocus
+              value={SearchTerm}
+              onChange={handleSearchChange}
+            />
+          </div>
+          <div className="w-full flex justify-center md:justify-start">
+            <button
+              className="border-transparent py-2 px-4 shadow-md sm:shadow-xl rounded-md cursor-pointer bg-green-300 hover:bg-green-500 hover:font-bold text-black transition-all duration-300 hover:shadow-md transform hover:-translate-y-0.5 hover:scale-[1.02] text-sm sm:text-base whitespace-nowrap"
+              onClick={handleRegisterClick}
+            >
+              REGISTER NEW CLIENT
+            </button>
+          </div>
         </div>
 
-        <div className="p-4">
-          <table className="w-full text-left text-base overflow-hidden">
+        <div className="flex justify-center mb-4">
+          <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-center">
+            Registered Clients
+          </h1>
+        </div>
+
+        <div className="p-1 sm:p-2 md:p-4 overflow-x-auto">
+          <table className="min-w-full text-left text-sm sm:text-base">
             <thead className="bg-gray-200">
               <tr>
-                <th className="p-3 text-center">#</th>{" "}
-                {/* Add column for numbering */}
-                <th className="p-3 text-center">FIRST NAME</th>
-                <th className="p-3 text-center">LAST NAME</th>
-                <th className="p-3 text-center">PHONE NO.</th>
-                <th className="p-3 text-center">DOB</th>
-                <th className="p-3 text-center">GENDER</th>
-                <th className="p-3 text-center">ACTION</th>
+                <th className="p-2 text-center">#</th>
+                <th className="p-2 text-center">FIRST NAME</th>
+                <th className="p-2 text-center">LAST NAME</th>
+                <th className="p-2 text-center">PHONE NO.</th>
+                <th className="p-2 text-center">DOB</th>
+                <th className="p-2 text-center">GENDER</th>
+                <th className="p-2 text-center">ACTION</th>
               </tr>
             </thead>
             <tbody>
               {filteredClients.map((client, i) => (
                 <tr className="border-b border-gray-300" key={i}>
-                  <td className="py-3 text-center">{i + 1}</td>{" "}
-                  {/* Display ascending number */}
-                  <td className="py-3 text-center">{client.firstName}</td>
-                  <td className="py-3 text-center">{client.lastName}</td>
-                  <td className="py-3 text-center">{client.phoneNumber}</td>
-                  <td className="py-3 text-center">
+                  <td className="py-2 text-center">{i + 1}</td>
+                  <td className="py-2 text-center">{client.firstName}</td>
+                  <td className="py-2 text-center">{client.lastName}</td>
+                  <td className="py-2 text-center">{client.phoneNumber}</td>
+                  <td className="py-2 text-center">
                     {new Date(client.DOB).toLocaleDateString("en-US", {
                       year: "numeric",
-                      month: "long",
+                      month: "short",
                       day: "numeric",
                     })}
                   </td>
-                  <td className="py-3 text-center">{client.gender}</td>
-                  <td className="py-3 text-center">
-                    <div className="flex justify-center gap-4">
+                  <td className="py-2 text-center">{client.gender}</td>
+                  <td className="py-2 text-center">
+                    <div className="flex flex-wrap justify-center gap-2">
                       <button
                         onClick={() => handleEnrollClick(client)}
-                        className="bg-green-300 hover:bg-green-500 text-black py-1 px-3 rounded-md shadow-md cursor-pointer"
+                        className="bg-green-300 hover:bg-green-500 text-black py-1 px-3 rounded-md shadow-sm text-xs sm:text-sm"
                       >
                         ENROLL
                       </button>
                       <Link
                         to={`/clients/${client._id}`}
-                        className="bg-blue-300 hover:bg-blue-500 text-black py-1 px-3 rounded-md shadow-md cursor-pointer"
+                        className="bg-blue-300 hover:bg-blue-500 text-black py-1 px-3 rounded-md shadow-sm text-xs sm:text-sm"
                       >
                         PROFILE
                       </Link>

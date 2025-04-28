@@ -45,7 +45,7 @@ const ClientRegistrationForm = ({ onClose }) => {
 
       clientData();
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       toast.error("Registration failed");
     }
   };
